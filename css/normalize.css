@@ -8,13 +8,14 @@ body {
     margin: 0;
 }
 
-html,
-body {
-    height: 100%
-}
 
 main {
     display: block;
+}
+
+img {
+    max-width: 100%;
+    display: block
 }
 
 ul,

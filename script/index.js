@@ -19,6 +19,7 @@ let CURRENT_YEAR = DATE.getFullYear()
 let numberOfDaysInMonth = 0;
 let arrDate = [];
 let ARR_MONTH = [];
+const WEEK = 7;
 
 
 
@@ -29,7 +30,7 @@ function setMonthAndYear() {
 
 setCurrentMonth()
 function setCurrentMonth() {
-    for (let k = 0; k < 7; k++) {
+    for (let k = 0; k < WEEK; k++) {
         if (MONTH + 1 < 10) {
             CURRENT_MONTH = '0' + (MONTH + 1);
             ARR_MONTH.push('0' + (MONTH + 1))
@@ -115,7 +116,7 @@ function showUsersTasks() {
 
     personalCards.forEach(card => {
 
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < WEEK; i++) {
             card.insertAdjacentHTML('beforeEnd', `
                 <div class="personal-cards__item" data-calendar-date=${CURRENT_YEAR}-${ARR_MONTH[i]}-${arrDate[i]} data-position-cell=${i + 1}></div>
             `)
@@ -140,6 +141,7 @@ function setEventDragOnDrop() {
     liElementFromBacklog.forEach(elem => {
         elem.addEventListener('dragstart', (e) => {
             e.dataTransfer.setData('text/plain', e.target.id)
+            e.dataTransfer.effectAllowed = "move";
         })
     })
 
@@ -247,7 +249,7 @@ function showTaskData(dataTasks) {
 function setCalendarDate() {
     const dates = document.querySelector('.dates');
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < WEEK; i++) {
         if (DAY + i < 10) {
             arrDate.push(`0${DAY + i}`)
         } else {
@@ -276,11 +278,14 @@ function dragEnter(event) {
 
 function dragOver(event) {
     event.preventDefault();
+    event.dataTransfer.dropEffect = "move"
     event.currentTarget.classList.add('drag-border');
+
 }
 
 function gragLeave(event) {
     event.currentTarget.classList.remove('drag-border');
+
 }
 
 function drop(event) {

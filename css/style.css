@@ -89,8 +89,8 @@
     content: attr(data-title);
     position: absolute;
     left: 50%;
-    top: -10%;
-    transform: translate(-50%, -10%);
+    top: -15%;
+    transform: translate(-50%, -15%);
     max-height: 50px;
     height: 100%;
     overflow-y: auto;
@@ -101,6 +101,7 @@
     color: var(--black);
     font-size: 20px;
     padding: 10px 20px;
+    margin-top: 30px;
     border: 1px solid var(--lightGray);
 }
 
@@ -366,7 +367,13 @@
     }
 }
 
+
 @media (max-width: 1120px) {
+
+    .tasks__item:hover::after {
+        top: -7%;
+        transform: translate(-50%, -7%);
+    }
 
     .container__content {
         flex-direction: column;
@@ -378,9 +385,9 @@
         margin-bottom: 40px
     }
 
-    .tasks__item:hover::after {
+    /* .tasks__item:hover::after {
         top: -10%
-    }
+    } */
 
     .backlog {
         width: 100%;
@@ -399,10 +406,7 @@
 
     .tasks__item:hover::after {
         top: -7%;
-    }
-
-    .tasks__item:hover::after {
-        top: -13%;
+        transform: translate(-50%, -7%);
     }
 
     .personal-cards {
@@ -419,6 +423,10 @@
 }
 
 @media (max-width: 750px) {
+
+    .tasks__item:hover::after {
+        line-height: 25px;
+    }
 
     .buttons-slider__left {
         margin-left: 20px;
@@ -463,6 +471,11 @@
 }
 
 @media (max-width: 550px) {
+    .tasks__item:hover::after {
+        font-size: 16px;
+        line-height: 25px;
+    }
+
     .container {
         padding: 0 3px;
     }
@@ -485,6 +498,11 @@
 }
 
 @media (max-width: 450px) {
+
+    .tasks__item:hover::after {
+        top: -12%;
+        transform: translate(-50%, -12%);
+    }
 
     .buttons-slider__left {
         margin-left: 10px;
