@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/_global.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+  </head>
+
+  <body>
+    <main class="main">
+      <div class="container container__content opacity-background">
+        <div class="planner">
+          <div class="planner__buttons-slider buttons-slider">
+            <button
+              class="planner__btn-left buttons-slider__left btn-reset slider-btn-padding" >
+              Left
+            </button>
+            <button
+              class="planner__btn-left buttons-slider__right btn-reset slider-btn-padding" >
+              Right
+            </button>
+          </div>
+        <ul class="plannet__table dates">
+          <li class="dates__num dates__num--borderNone"></li>
+        </ul>
+      </div>
+      <button class="backlog-btn-show btn-reset">
+        <img class="backlog-btn-show__img" src="./images/backlog-burger.png" alt="">
+        <span class="backlog-btn-show__title">Backlog</span></button>
+        <div class="backlog">
+          <div class="backlog__inner">
+            <h2 class="backlog__title">Backlog</h2>
+            <img class="backlog__close-img" src="./images/close.png" alt="">
+            <form class="backlog__search-box search" name="search for the desired task">
+              <input class="search__input" type="text" action="" method="POST" placeholder="Поиск задачи" />
+              <button class="search__button btn-reset">
+                <img
+                  src="./images/search.png"
+                  alt=""
+                  class="search__img-magnifier"
+                />
+              </button>
+            </form>
+            <p class="backlog__search-text">Вы ввели: <span class="backlog__enter-word"></span></p>
+            <p class="backlog__text-info">Для поиска задачи: введите больше чем три символа</p>
+            <ul class="backlog__tasks tasks-info"></ul>
+          </div>
+        </div>
+    </main>
+        <div class="loading"></div>
+    <script defer src="script/index.js"></script>
+  </body>
+</html>
+
+
+

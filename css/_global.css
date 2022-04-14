@@ -1,0 +1,60 @@
+@import './constants.css';
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box
+}
+
+
+img {
+    max-width: 100%;
+    display: block
+}
+
+
+body {
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27px;
+    color: #000;
+    overflow-x: hidden;
+    background-color: #6da8bc;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+}
+
+.container__content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.btn-reset {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.slider-btn-padding {
+    color: var(--default);
+    background-color: var(--orange);
+    padding-top: var(--buttonSliderPaddingTop);
+    padding-bottom: var(--buttonSliderPaddingBottom);
+    padding-left: var(--buttonSliderPaddingLeft);
+    padding-right: var(--buttonSliderPaddingRight);
+    border-radius: var(--btnRadius);
+    transition: all .3s;
+}
+
+.slider-btn-padding:hover {
+    background-color: var(--black);
+}
