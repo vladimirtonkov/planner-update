@@ -43,6 +43,28 @@ function setCurrentMonth() {
 }
 
 
+function setCalendarDate() {
+    const dates = document.querySelector('.dates');
+
+    for (let i = 0; i < WEEK; i++) {
+        if (DAY + i < 10) {
+            arrDate.push(`0${DAY + i}`)
+        } else {
+            arrDate.push(`${DAY + i}`)
+        }
+    }
+
+    for (let i = 0; i < arrDate.length; i++) {
+        dates.insertAdjacentHTML('beforeEnd', `
+                <li class="dates__num">${arrDate[i]}.${CURRENT_MONTH}</li>
+            `)
+    }
+
+}
+
+setCalendarDate()
+
+
 async function getTasks(URL, repeatNtimes) {
     try {
         const response = await fetch(URL);
@@ -137,6 +159,7 @@ function setEventDragOnDrop() {
         card.addEventListener('dragleave', gragLeave);
         card.addEventListener('drop', drop);
     })
+
 
     liElementFromBacklog.forEach(elem => {
         elem.addEventListener('dragstart', (e) => {
@@ -244,33 +267,6 @@ function showTaskData(dataTasks) {
 
 
 
-
-
-function setCalendarDate() {
-    const dates = document.querySelector('.dates');
-
-    for (let i = 0; i < WEEK; i++) {
-        if (DAY + i < 10) {
-            arrDate.push(`0${DAY + i}`)
-        } else {
-            arrDate.push(`${DAY + i}`)
-        }
-    }
-
-    for (let i = 0; i < arrDate.length; i++) {
-        dates.insertAdjacentHTML('beforeEnd', `
-                <li class="dates__num">${arrDate[i]}.${CURRENT_MONTH}</li>
-            `)
-    }
-
-}
-
-setCalendarDate()
-
-
-
-
-
 function dragEnter(event) {
     event.preventDefault();
     event.currentTarget.classList.add('drag-border');
@@ -279,13 +275,22 @@ function dragEnter(event) {
 function dragOver(event) {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move"
-    event.currentTarget.classList.add('drag-border');
+    // event.currentTarget.classList.add('drag-border');
 
+
+    if (event.currentTarget.querySelector('.tasks')) {
+        let countLiElements = event.currentTarget.querySelector('.tasks').children;
+        if (countLiElements.length < 3) {
+            event.currentTarget.classList.add('drag-border');
+        } else {
+            event.currentTarget.classList.add('black-border');
+        }
+    }
 }
 
 function gragLeave(event) {
     event.currentTarget.classList.remove('drag-border');
-
+    event.currentTarget.classList.remove('black-border');
 }
 
 function drop(event) {
@@ -295,15 +300,20 @@ function drop(event) {
     const text = draggableElement.querySelector('.tasks-info__text').textContent;
 
     event.currentTarget.classList.remove('drag-border');
+    event.currentTarget.classList.remove('black-border');
 
 
     if (!event.currentTarget.closest('.personal-cards__executor')) {
 
-        removeAndAddTasksClassFromAnDraggElem(draggableElement)
+        let countLiElements = event.currentTarget.querySelector('.tasks').children;
 
-        draggableElement.setAttribute('draggable', false);
-        draggableElement.setAttribute('data-title', `${title}` + `${text}`);
-        event.currentTarget.querySelector('.tasks').appendChild(draggableElement);
+        if (countLiElements.length < 3) {
+            removeAndAddTasksClassFromAnDraggElem(draggableElement)
+
+            draggableElement.setAttribute('draggable', false);
+            draggableElement.setAttribute('data-title', `${title}` + `${text}`);
+            event.currentTarget.querySelector('.tasks').appendChild(draggableElement);
+        }
 
 
     } else {
